@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="post.css">
+
+</head>
+
+<body>
+
+
+    <header>
+        <h1>エピソード投稿サイト</h1>
+    </header>
+
+    <main>
+        <!-- フォーム欄を作る -->
+        <form id="insert_form">
+            <div class="cp_iptxt">
+                <label class="ef">
+                    <input type="text" id="manufacturer" name="manufacturer" placeholder="メーカー(必須)">
+                </label>
+            </div>
+
+            <!-- メーカー -->
+            <div class="cp_iptxt">
+                <label class="ef">
+                    <input type="text" id="product" name="product" placeholder="製品名(任意)">
+                </label>
+            </div>
+
+            <!-- 製品名 -->
+            <div class="form">
+                <p class=>製品名がわからない方は「ファイルを選択」ボタンから画像を送信してください。</p>
+                <input type="file" class="form-control-file" id="upfile" name="upfile" accept="image/*"
+                    capture="camera">
+            </div>
+
+            <!-- エピソードの入力欄 -->
+            <textarea id="comment" class="text_area" name="comment" placeholder="エピソードを入力しよう(必須)"></textarea>
+
+            <!-- 利用規約 -->
+            <div class="cp_ipcheck">
+                <input type="checkbox" class="checkbox" name="checkbox" checked />
+                利用規約に同意する<br>
+
+                <!-- 送信ボタン -->
+                <button type="button" id="send" class="btn-square-little-rich">送信する</button>
+            </div>
+        </form>
+
+    </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script>
+
+        // DBからデータを取得する関数
+        function getAllDataFromDb() {
+            const url = 'ajax_get.php';
+            $.ajax({
+                method: 'GET',
+                url: url,
+                dataType: 'json',
+            }).done(function (data) {
+                console.log(data);
+
+
+                // 送信した内容を表示する
+                //     $('#echo').html(createListTagFromData(data));
+                // }).fail(function (error) {
+                //     console.log(error);
+                // }).always(function () {
+                //     console.log('OK!');
+            });
+        };
+
+        // PHPへデータを送信する関数
+        function insertDataToDb() {
+            const url = 'ajax_post.php';
+            const data = new FormData($('#insert_form').get(0));
+
+            $.ajax({
+                method: 'POST',
+                url: url,
+                data: data,
+                dataType: 'json',
+                processData: false,
+                contentType: false,
+            }).done(function (data) {
+                console.log(data);
+                $('#echo').html(createListTagFromData(data));
+                $('button').attr('disabled', false);
+            }).fail(function (error) {
+                console.log(error);
+            }).always(function () {
+                console.log('completed!');
+            });
+        };
+        // 読み込み時にデータを取得する関数を実行
+        getAllDataFromDb();
+
+
+        // 送信ボタンクリック時の処理
+        $('#send').on('click', function () {
+            $('button').attr('disabled', true);
+            insertDataToDb();
+            $('#manufacturer').val('');
+            $('#product').val('');
+            $('#upfile').val('');
+            $('#comment').val('');
+            $('#checkbox').val('');
+        })
+
+    </script>
+
+</body>
+
+</html>
