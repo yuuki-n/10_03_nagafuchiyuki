@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>紙を開くような効果のあるjQueryプラグイン「PFold」サンプル　│　ぱんにゃっと/H&Y　Tutorial</title>
+
+    <link rel="stylesheet" type="text/css" href="css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="css/pfold.css" />
+    <link rel="stylesheet" type="text/css" href="css/custom1.css" />
+    <script type="text/javascript" src="js/modernizr.custom.79639.js"></script>
+    <!--[if lte IE 8]><style>.support-note .note-ie{display:block;}</style><![endif]-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.pfold.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+            var $container = $('#uc-container'),
+                pfold = $('#uc-container').pfold({
+                    easing: 'ease-in-out',
+                    folds: 3,
+                    folddirection: ['left', 'bottom', 'right']
+                });
+
+            $container.find('span.clickme').on('click', function () {
+
+                pfold.unfold();
+
+            }).end().find('span.close').on('click', function () {
+
+                pfold.fold();
+
+            });
+
+        });
+    </script>
+    <style>
+        body {
+            background: url(images/bg.jpg);
+        }
+
+        .container>header h1 {
+            color: #fff;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+        }
+
+        .container>header h2,
+        p.info {
+            color: #fff;
+            text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <header>
+
+            <h1>折りたたんだ紙を開くような効果のあるjQueryプラグイン「PFold」サンプル</h1>
+            <h2>まるで折りたたんだ紙を開いているようにアニメーションします。</h2>
+
+            <div class="support-note">
+                <!-- let's check browser support with modernizr -->
+                <span class="no-csstransforms3d">CSS 3D transforms are not supported in your browser</span>
+                <span class="note-ie">Sorry, only modern browsers.</span>
+            </div>
+
+        </header>
+
+        <section class="main demo-1">
+
+            <div id="uc-container" class="uc-container">
+                <div class="uc-initial-content">
+                    <!-- custom content -->
+                    <span class="clickme">Click me</span>
+                </div>
+                <div class="uc-final-content">
+                    <!-- custom content -->
+                    <div class="scrollwrap">
+                        <!-- <h3>Happy Birthday!</h3> -->
+                        <!-- <p>お誕生日本当におめでとう。 昨日はおめでとう言えなかったけど、今日のお休みは希望のお休みだよ。二人でお祝いしようと思ってたからちゃんと覚えてるよ。今年一年が良い年となりますように。<p class="signature">From, Yuka</p> -->
+                    </div>
+                    <span class="close">x</span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+
+</html>
