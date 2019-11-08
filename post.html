@@ -21,7 +21,7 @@
         <form id="insert_form">
             <div class="cp_iptxt">
                 <label class="ef">
-                    <input type="text" id="manufacturer" name="manufacturer" placeholder="メーカー(必須)">
+                    <input type="text" id="name" name="name" placeholder="メーカー(必須)">
                 </label>
             </div>
 
@@ -58,6 +58,10 @@
 
     <script>
 
+        function createListTagFromData(data) {
+            const array = [];
+        }
+
         // DBからデータを取得する関数
         function getAllDataFromDb() {
             const url = 'ajax_get.php';
@@ -69,12 +73,12 @@
                 console.log(data);
 
 
-                // 送信した内容を表示する
-                //     $('#echo').html(createListTagFromData(data));
-                // }).fail(function (error) {
-                //     console.log(error);
-                // }).always(function () {
-                //     console.log('OK!');
+                送信した内容を表示する
+                $('#echo').html(createListTagFromData(data));
+            }).fail(function (error) {
+                console.log(error);
+            }).always(function () {
+                console.log('OK!');
             });
         };
 
@@ -92,8 +96,6 @@
                 contentType: false,
             }).done(function (data) {
                 console.log(data);
-                $('#echo').html(createListTagFromData(data));
-                $('button').attr('disabled', false);
             }).fail(function (error) {
                 console.log(error);
             }).always(function () {
@@ -106,9 +108,9 @@
 
         // 送信ボタンクリック時の処理
         $('#send').on('click', function () {
-            $('button').attr('disabled', true);
+            // $('button').attr('disabled', true);
             insertDataToDb();
-            $('#manufacturer').val('');
+            $('#name').val('');
             $('#product').val('');
             $('#upfile').val('');
             $('#comment').val('');

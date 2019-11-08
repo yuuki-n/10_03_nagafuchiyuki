@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: localhost
--- 生成日時: 2019 年 11 月 07 日 15:57
+-- 生成日時: 2019 年 11 月 08 日 12:30
 -- サーバのバージョン： 10.4.6-MariaDB
 -- PHP のバージョン: 7.3.9
 
@@ -30,9 +30,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `episode_table` (
   `id` int(12) NOT NULL,
-  `manufacturer` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `product` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `image` varchar(128) COLLATE utf8_unicode_ci DEFAULT 'NULL',
+  `image` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
   `comment` text COLLATE utf8_unicode_ci NOT NULL,
   `indate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -41,9 +41,10 @@ CREATE TABLE `episode_table` (
 -- テーブルのデータのダンプ `episode_table`
 --
 
-INSERT INTO `episode_table` (`id`, `manufacturer`, `product`, `image`, `comment`, `indate`) VALUES
-(1, 'SONY', 'WF-1000XM3', NULL, 'Bluetoothイヤホンの音切れで悩んでいたバンドマンの友人にプレゼントしました。音質も良くて、曲作りもはかどっているみたいです！', '2019-11-07 00:00:00'),
-(2, 'Apple', 'AirPods', NULL, 'ジムに通う父にプレゼントしました。好きなミスチルの曲を聴きながらランニングマシーンを頑張っています。あっという間に1曲聴き終わって走るのが楽しくなってきたみたいです^^', '2019-11-07 00:00:00');
+INSERT INTO `episode_table` (`id`, `name`, `product`, `image`, `comment`, `indate`) VALUES
+(1, 'SONY', 'WF-1000XM3', 'NULL', 'Bluetoothイヤホンの音切れで悩んでいたバンドマンの友人にプレゼントしました。音質も良くて、曲作りもはかどっているみたいです！', '2019-11-07 00:00:00'),
+(2, 'Apple', 'AirPods', 'NULL', 'ジムに通う父にプレゼントしました。好きなミスチルの曲を聴きながらランニングマシーンを頑張っています。あっという間に1曲聴き終わって走るのが楽しくなってきたみたいです^^', '2019-11-07 00:00:00'),
+(3, 'UQmobile', '', 'upload/20191108122804d41d8cd98f00b204e9800998ecf8427e.jpg', '月の途中にギガがなくなって動画再生も我慢していましたが、wifiルーターを買って快適に見れます！\r\n大好きなダンスも練習し放題で、部活がもっと楽しくなりました^^', '2019-11-08 20:28:04');
 
 --
 -- ダンプしたテーブルのインデックス
@@ -63,7 +64,7 @@ ALTER TABLE `episode_table`
 -- テーブルのAUTO_INCREMENT `episode_table`
 --
 ALTER TABLE `episode_table`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
